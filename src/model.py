@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
-#This is a tempele file. Please add your model as a class. 
+#This is a template file. Please add your model as a class. 
 
 # Your Model Class
 class YourModel:
