@@ -3,6 +3,7 @@ import pandas as pd
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn.linear_model import LinearRegression
 
 
 # This is a template file. Please add your model as a class.
@@ -64,3 +65,21 @@ class NN_model:
         rmse = np.sqrt(mean_squared_error(y_test, predictions))
         mae = mean_absolute_error(y_test, predictions)
         return {"Model": self.model_name, "RMSE": rmse, "MAE": mae}
+
+class LinearRegressionModel:
+    def _init_(self):
+        self.model = LinearRegression()
+
+    def train(self, X_train, y_train):
+        # Train Linear Regression model
+        self.model.fit(X_train, y_train)
+        print("Linear Regression model trained.")
+
+    def predict(self, X_test):
+        return self.model.predict(X_test)
+
+    def evaluate(self, X_test, y_test):
+        y_pred = self.predict(X_test)
+       
+        mse = mean_squared_error(y_test, y_pred)
+        return mse
