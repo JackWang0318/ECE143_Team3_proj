@@ -4,6 +4,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
+from sklearn.neighbors import KNeighborsRegressor
 
 # This is a template file. Please add your model as a class.
 # Your Model Class
@@ -60,6 +61,28 @@ class NN_model:
         return self.model.predict(X_test).flatten()
 
     def evaluate(self, X_test, y_test):
+        predictions = self.predict(X_test)
+        rmse = np.sqrt(mean_squared_error(y_test, predictions))
+        mae = mean_absolute_error(y_test, predictions)
+        return {"Model": self.model_name, "RMSE": rmse, "MAE": mae}
+    
+
+class KNN_model:
+    def __init__(self, model_name="KNN", n_neighbors=5):
+        self.model_name = model_name
+        self.n_neighbors = n_neighbors
+        self.model = KNeighborsRegressor(n_neighbors=self.n_neighbors)
+
+    def train(self, X_train, y_train):
+        """Train the KNN model"""
+        self.model.fit(X_train, y_train)
+
+    def predict(self, X_test):
+        """Make predictions using the KNN model"""
+        return self.model.predict(X_test)
+
+    def evaluate(self, X_test, y_test):
+        """Evaluate model performance using RMSE and MAE"""
         predictions = self.predict(X_test)
         rmse = np.sqrt(mean_squared_error(y_test, predictions))
         mae = mean_absolute_error(y_test, predictions)
