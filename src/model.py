@@ -1,33 +1,10 @@
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.linear_model import LinearRegression
-
-
-# This is a template file. Please add your model as a class.
-# Your Model Class
-class YourModel:
-    def __init__(self, model_name="Yourmodel"):
-        self.model_name = model_name
-        self.model = None
-
-    def train(self, X_train, y_train):
-        """Train the model"""
-        raise NotImplementedError("Each model must implement its own train method.")
-
-    def predict(self, X_test):
-        """Make predictions"""
-        raise NotImplementedError("Each model must implement its own predict method.")
-
-    def evaluate(self, X_test, y_test):
-        """Evaluate model performance"""
-        predictions = self.predict(X_test)
-        rmse = np.sqrt(mean_squared_error(y_test, predictions))
-        mae = mean_absolute_error(y_test, predictions)
-        return {"Model": self.model_name, "RMSE": rmse, "MAE": mae}
-
 
 # NN model, contributed by Ching-Hao Wang, pushed by Hongjie Wang
 class NN_model:
@@ -64,14 +41,13 @@ class NN_model:
         predictions = self.predict(X_test)
         rmse = np.sqrt(mean_squared_error(y_test, predictions))
         mae = mean_absolute_error(y_test, predictions)
-        return {"Model": self.model_name, "RMSE": rmse, "MAE": mae}
+        return {"Predictions": predictions, "RMSE": rmse, "MAE": mae}
 
 class LinearRegressionModel:
-    def _init_(self):
+    def __init__(self):
         self.model = LinearRegression()
 
     def train(self, X_train, y_train):
-        # Train Linear Regression model
         self.model.fit(X_train, y_train)
         print("Linear Regression model trained.")
 
@@ -79,7 +55,7 @@ class LinearRegressionModel:
         return self.model.predict(X_test)
 
     def evaluate(self, X_test, y_test):
-        y_pred = self.predict(X_test)
-       
-        mse = mean_squared_error(y_test, y_pred)
-        return mse
+        predictions = self.predict(X_test)
+        rmse = np.sqrt(mean_squared_error(y_test, predictions))
+        mae = mean_absolute_error(y_test, predictions)
+        return {"Predictions": predictions, "RMSE": rmse, "MAE": mae}
