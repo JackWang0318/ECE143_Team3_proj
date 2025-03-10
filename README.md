@@ -10,6 +10,7 @@ The used and refurbished device market has grown significantly in recent years d
 
 ***
 ## About Dataset 
+- The [Data Exploratory Analysis Demo](https://wi25-ece143-team3.streamlit.app/) we deployed via streamlit. 
 - [Dataset Link](https://www.kaggle.com/datasets/ahsan81/used-handheld-device-data/data)
 - CONTEXT- The used and refurbished device market has grown considerably over the past decade as it provide cost-effective alternatives to both consumers and businesses that are looking to save money when purchasing one. Maximizing the longevity of devices through second-hand trade also reduces their environmental impact and helps in recycling and reducing waste. Here is a sample dataset of normalized used and new pricing data of refurbished / used devices.
 
@@ -30,6 +31,11 @@ The used and refurbished device market has grown significantly in recent years d
 | days_used           | Number of days the used/refurbished device has been used |
 | normalized_new_price | Normalized price of a new device of the same model     |
 | normalized_used_price (TARGET) | Normalized price of the used/refurbished device |
+
+## Prediction Approach
+- Linear Regression
+- K-Nearest-Neighbors model
+- Neural Network model
 
 ## Project Stage
 1. Extracting and cleaning up data
