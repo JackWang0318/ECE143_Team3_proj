@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from model import LinearRegressionModel, NN_model # Import all model classes when more are added
+from model import LinearRegressionModel, NN_model, KNN_model  # Import the KNN_model along with others
 from sklearn.model_selection import train_test_split
 
 
@@ -34,10 +34,8 @@ def evaluate_models(models, data_dir, results_dir):
             model = model_class("NN", X_train.shape[1])
         elif model_name == "Linear Regression":
             model = model_class()
-        
-        # model specific preprocessing
-        #X_train_processed, y_train_processed = model.process_data(X_train, t_train)
-        #X_test_processed, y_test_processed = model.process_data(X_test, t_test)
+        elif model_name == "KNN Model":
+            model = model_class()  # pass additional parameters if needed
 
         # Training model
         model.train(X_train, y_train)
@@ -45,23 +43,27 @@ def evaluate_models(models, data_dir, results_dir):
         # Evaluating model
         eval_results = model.evaluate(X_test, y_test)
         
-        # Storing RMSE
-        results.append({"Model": model_name, "RMSE": eval_results["RMSE"], "MAE": eval_results["MAE"]})
-        
-        # Storing predictions
+        # Storing evaluation metrics and predictions
+        results.append({
+            "Model": model_name,
+            "RMSE": eval_results["RMSE"],
+            "MAE": eval_results["MAE"]
+        })
         predictions_data[model_name] = eval_results["Predictions"]
     
-    
+    # Save metrics and predictions to CSV files
     metrics_df = pd.DataFrame(results)
     predictions_df = pd.DataFrame(predictions_data)
 
     metrics_df.to_csv(os.path.join(results_dir, 'evaluation_metrics.csv'), index=False)
     predictions_df.to_csv(os.path.join(results_dir, 'predictions.csv'), index=False)
 
+
 if __name__ == "__main__":
     models = {
         "Linear Regression": LinearRegressionModel,
-        "NN Model": NN_model
+        "NN Model": NN_model,
+        "KNN Model": KNN_model
     }
     
     data_dir = "data/"
