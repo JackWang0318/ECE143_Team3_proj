@@ -45,7 +45,9 @@ def evaluate_models(models, data_dir, results_dir, **preprocessing_options):
         elif model_name == "Linear Regression":
             model = model_class()
         elif model_name == "KNN Model":
-            model = model_class()
+            model = model_class(n_neighbors=9,
+                                weights='distance',
+                                metric='euclidean')
         elif model_name == "Random Forest":
             model = model_class(n_estimators=200, max_depth=10)
         elif model_name == "SVM Model":

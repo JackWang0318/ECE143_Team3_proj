@@ -65,10 +65,14 @@ class LinearRegressionModel:
 
 
 class KNN_model:
-    def __init__(self, model_name="KNN", n_neighbors=5):
+    def __init__(self, model_name="KNN", n_neighbors=5, weights='uniform', metric='minkowski'):
         self.model_name = model_name
         self.n_neighbors = n_neighbors
-        self.model = KNeighborsRegressor(n_neighbors=self.n_neighbors)
+        self.weights = weights
+        self.metric = metric
+        self.model = KNeighborsRegressor(n_neighbors=self.n_neighbors,
+                                         weights=self.weights,
+                                         metric=self.metric)
 
     def train(self, X_train, y_train):
         """Train the KNN model"""
