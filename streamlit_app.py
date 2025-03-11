@@ -75,12 +75,12 @@ if selected_os:
 
 if selected_4g != "All":
     filtered_df = filtered_df[
-        filtered_df["4g"] == ("yes" if selected_4g == "yes" else "no")
+        filtered_df["4g"] == ("yes" if selected_4g == "Yes" else "no")
     ]
 
 if selected_5g != "All":
     filtered_df = filtered_df[
-        filtered_df["5g"] == ("yes" if selected_5g == "yes" else "no")
+        filtered_df["5g"] == ("yes" if selected_5g == "Yes" else "no")
     ]
 
 filtered_df = filtered_df[
