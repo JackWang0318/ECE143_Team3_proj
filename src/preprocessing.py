@@ -34,7 +34,7 @@ def scale_features(df):
     numeric_columns = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
     
     if not numeric_columns:
-        print("⚠️ No numeric columns found for scaling. Skipping MinMaxScaler.")
+        print("No numeric columns found for scaling. Skipping MinMaxScaler.")
         return df  # Skip scaling if no numeric columns exist
     
     df[numeric_columns] = scaler.fit_transform(df[numeric_columns])
