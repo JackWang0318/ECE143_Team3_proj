@@ -38,6 +38,17 @@ The used and refurbished device market has grown significantly in recent years d
 - Linear Regression
 - K-Nearest-Neighbors model
 - Neural Network model
+- ...
+
+## Set-Up Commands after Cloneing the Repo
+- With Python3.9+, to install all the dependent libraries:
+```shell
+pip install -r requirements
+```
+- To run streamlit app locally:
+```shell
+streamlit run streamlit_app.py
+```
 
 ## Project Stage
 1. Extracting and cleaning up data
