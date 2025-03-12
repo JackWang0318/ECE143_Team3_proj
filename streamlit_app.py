@@ -250,6 +250,7 @@ with col6:
                 "battery",
                 "weight",
                 "days_used",
+                "normalized_new_price",
                 "normalized_used_price",
             ]
         ].corr(),
